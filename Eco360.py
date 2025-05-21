@@ -3,9 +3,9 @@
 import streamlit as st
 import pandas as pd
 import numpy as np
-from sklearn.ensemble import RandomForestClassifier
-from sklearn.model_selection import train_test_split
-from sklearn.preprocessing import LabelEncoder
+import RandomForestClassifier
+import train_test_split
+import LabelEncoder
 import matplotlib.pyplot as plt
 import seaborn as sns
 
