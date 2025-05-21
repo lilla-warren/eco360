@@ -4,6 +4,9 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 from sklearn.ensemble import RandomForestClassifier
+from sklearn.preprocessing import LabelEncoder
+import matplotlib.pyplot as plt
+import seaborn as sns
 
 # --- Page Config ---
 st.set_page_config(page_title="Eco360 – ML Spatial Predictor", layout="wide")
@@ -31,14 +34,21 @@ data = {
 # Convert to DataFrame
 df = pd.DataFrame(data)
 
-# Encode categorical variables
+# Encode categorical variables using LabelEncoder
 label_encoders = {}
 for column in df.columns:
     if df[column].dtype == 'object':
+        le = LabelEncoder()
+        df[column] = le.fit_transform(df[column])
+        label_encoders[column] = le
 
-# ML Model
+# Prepare features and target
+X = df.drop('regret_risk', axis=1)
+y = df['regret_risk']
+
+# Train model
 model = RandomForestClassifier(n_estimators=100, random_state=42)
-model.fit(X_train, y_train)
+model.fit(X, y)
 
 # --- User Form Input ---
 st.subheader("📝 Tell us about your preferences")
@@ -52,7 +62,7 @@ with st.form("user_input_form"):
     form_submitted = st.form_submit_button("🔍 Predict Regret Risk")
 
 if form_submitted:
-    # Encode inputs
+    # Encode inputs similarly to training data
     input_data = {
         'rearranges_frequently': 1 if rearranges == "Yes" else 0,
         'prefers_style': label_encoders['prefers_style'].transform([style])[0],
