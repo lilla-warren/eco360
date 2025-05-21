@@ -34,7 +34,6 @@ df = pd.DataFrame(data)
 label_encoders = {}
 for column in df.columns:
     if df[column].dtype == 'object':
-        le = LabelEncoder()
         df[column] = le.fit_transform(df[column])
         label_encoders[column] = le
 
