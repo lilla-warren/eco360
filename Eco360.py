@@ -3,7 +3,6 @@
 import streamlit as st
 import pandas as pd
 import numpy as np
-import RandomForestClassifier
 import train_test_split
 import LabelEncoder
 import matplotlib.pyplot as plt
