@@ -34,7 +34,6 @@ df = pd.DataFrame(data)
 label_encoders = {}
 for column in df.columns:
     if df[column].dtype == 'object':
-        label_encoders[column] = le
 
 # Split features and target
 X = df.drop(columns=['regret_risk'])
