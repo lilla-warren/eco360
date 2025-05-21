@@ -35,9 +35,6 @@ label_encoders = {}
 for column in df.columns:
     if df[column].dtype == 'object':
 
-# Split features and target
-X = df.drop(columns=['regret_risk'])
-y = df['regret_risk']
 
 # Train/Test split
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
