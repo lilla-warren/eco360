@@ -3,7 +3,6 @@
 import streamlit as st
 import pandas as pd
 import numpy as np
-import seaborn as sns
 
 # --- Page Config ---
 st.set_page_config(page_title="Eco360 – ML Spatial Predictor", layout="wide")
